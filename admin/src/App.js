@@ -18,7 +18,7 @@ import Login from "./pages/login/Login";
 import { useSelector } from "react-redux";
 
 function App() {
-  const admin = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYWI0OWQ4NmJiN2QyOGE5NWVkZmNmZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1NjI3NDA5MywiZXhwIjoxNjU2NTMzMjkzfQ.NmL9OCMBJ_fapNsOYzkpGQnhPS-khnhDaP-U0qaMYcE";
+  const admin = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYWI0OWQ4NmJiN2QyOGE5NWVkZmNmZiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1NjMzODU1NiwiZXhwIjoxNjU2NTk3NzU2fQ._5L-uHo0Rl6ps9C3mUqaXtLzlQGxWp1LYpBzc_BW3Ho";
  
   //const admin = useSelector((state) => state.user.currentUser?.isAdmin);
   return (

@@ -1,45 +1,53 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://i.pinimg.com/originals/b6/54/19/b654193cd24b7e73782997c28a071e88.jpg",
-      title: "SUMMER SALE",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "f5fafd",
+      img: "pozav-removebg-preview.png",
+      title: "BARBATI",
+      desc: "NU RATA CEA MAI NOUA COLECTIE PENTRU BARBATI!!!",
+      bg: "F3EEED",
+      cat:"Barbati"
     },
     {
       id: 2,
-      img: "https://i.ibb.co/DG69bQ4/2.png",
-      title: "AUTUMN COLLECTION",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fcf1ed",
+      img: "poza slider Femei.png",
+      title: "FEMEI",
+      desc: "NU RATA CEA MAI NOUA COLECTIE PENTRU FEMEI!!!",
+      bg: "F3EEED",
+      cat:"Femei"
     },
     {
       id: 3,
       img: "https://i.ibb.co/cXFnLLV/3.png",
       title: "LOUNGEWEAR LOVE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fbf0f4",
+      bg: "F3EEED",
     },
   ];
 
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "SHIRT STYLE!",
-      cat:"women"
+      img: "poza cover camasi categorie.jpeg",
+      title: "Camasi!",
+      cat:"Camasi"
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
-      cat:"coat"
+      img: "poza cover pantaloni categorie.jpg",
+      title: "Pantaloni!",
+      cat:"Pantaloni"
     },
     {
       id: 3,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       title: "LIGHT JACKETS",
       cat:"jeans"
+    },
+    {
+      id: 4,
+      img: "https://i.pinimg.com/originals/b6/54/19/b654193cd24b7e73782997c28a071e88.jpg",
+      title: "Coat",
+      cat:"coat"
     },
   ];
 

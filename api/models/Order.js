@@ -17,7 +17,7 @@ const OrderSchema = new mongoose.Schema(
     amount: { type: Number, required: true },
     address: { type: Object, required: true },
     status: { type: String, default: "pending" },
-    // typePackaging:{ type: String, enum:["Zi de nastere", "Cadou", "Eveniment"] }
+    typePackaging: { type: String, enum: ["nastere", "cadou", "indragostitilor", "default"], default: "default"}
   },
   { timestamps: true }
 );

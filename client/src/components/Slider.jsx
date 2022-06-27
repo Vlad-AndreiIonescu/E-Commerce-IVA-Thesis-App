@@ -1,22 +1,24 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 88vh;
   display: flex;
   position: relative;
   overflow: hidden;
   ${mobile({ display: "none" })}
+ 
 `;
 
 const Arrow = styled.div`
   width: 50px;
   height: 50px;
-  background-color: #fff7f7;
+  background-color: #806F6C;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -53,7 +55,8 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 80%;
+  height: 88%;
+  margin-left:100px;
 `;
 
 const InfoContainer = styled.div`
@@ -103,7 +106,7 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
+            <Link to={`/products/${item.cat}`}><Button>CUMPARA ACUM</Button></Link>  
             </InfoContainer>
           </Slide>
         ))}

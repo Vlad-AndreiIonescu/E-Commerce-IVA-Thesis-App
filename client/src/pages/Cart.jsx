@@ -1,5 +1,5 @@
 import React from 'react';
-import { Add, Remove, DeleteOutline } from "@material-ui/icons";
+import { Add, Remove, DeleteOutline, Visibility } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -16,6 +16,7 @@ import {
   Link
 } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Alert } from '@mui/material';
 // import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 
@@ -83,6 +84,7 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
   width: 200px;
+  margin-bottom:20px;
 `;
 
 const Details = styled.div`
@@ -101,6 +103,9 @@ const ProductColor = styled.div`
   height: 20px;
   border-radius: 50%;
   background-color: ${(props) => props.color};
+ 
+    border-color: green;
+ 
 `;
 
 const ProductSize = styled.span``;
@@ -176,14 +181,16 @@ const Cart = () => {
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
-  const typePackaging=useSelector((state)=>state.typePackaging)
+  // const typePackaging = useSelector((state) => state.typePackaging)
+  const [typePackaging, setTypePackiging] = useState('default');
+  const [view, setView] = useState('');
+
   const onToken = (token) => {
     setStripeToken(token);
   };
 
-  const [selects, setSelects] = useState();
 
-  
+
 
   const handleDelete = useCallback((product) => {
     dispatch(
@@ -194,21 +201,33 @@ const Cart = () => {
     );
     console.log(product);
   }, []);
+
+
+
+
   useEffect(() => {
     const makeRequest = async () => {
       try {
+        console.log("a mers");
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
+          type: typePackaging
         });
+        console.log("res is: " + res.data);
         history.push("/success", {
           stripeData: res.data,
           products: cart,
         });
-      } catch { }
+
+      } catch {
+        console.log("sorry boss");
+      }
     };
     stripeToken && makeRequest();
-  }, [stripeToken, cart.total, history]);
+  }, [stripeToken, cart.total, history, typePackaging]);
+
+
   return (
     <Container>
       <Navbar />
@@ -227,6 +246,7 @@ const Cart = () => {
               <Product>
                 <ProductDetail>
                   <Image src={product.img} />
+
                   <Details>
                     <ProductName>
                       <b>Product:</b> {product.title}
@@ -234,7 +254,7 @@ const Cart = () => {
                     <ProductId>
                       <b>ID:</b> {product._id}
                     </ProductId>
-                    <ProductColor color={product.color} />
+                    <ProductColor><b>Culoare:</b>{product.color} </ProductColor>
                     <ProductSize>
                       <b>Size:</b> {product.size}
                     </ProductSize>
@@ -253,12 +273,6 @@ const Cart = () => {
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            {/* <h3>Tipul Ambalajului</h3>
-
-                  <select value={selects} onChange={e=>setSelects(e.target.value)}>
-                    <option>Zi de nastere</option>
-                    <option>Ziua Indragostitilor</option>
-                  </select> */}
 
 
             <FormControl fullWidth>
@@ -268,40 +282,36 @@ const Cart = () => {
                 id="demo-simple-select"
                 value={typePackaging}
                 label="tipAmbalaj"
-                //  onChange={handleChange}
+                onChange={e => setTypePackiging(e.target.value)}
               >
-                <MenuItem value={10}>Zi de nastere</MenuItem>
-                <MenuItem value={20}>Cadou</MenuItem>
-                <MenuItem value={30}>Ziua Indragostitilor</MenuItem>
+                <MenuItem value='default'>Default</MenuItem>
+                <MenuItem value='nastere'>Zi de nastere</MenuItem>
+                <MenuItem value='cadou'>Cadou</MenuItem>
+                <MenuItem value='indragostitilor'>Ziua Indragostitilor</MenuItem>
               </Select>
             </FormControl>
 
-            {/* <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>{cart.total} RON</SummaryItemPrice>
-            </SummaryItem> */}
-            {/* <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice> 5.90 RON</SummaryItemPrice>
-            </SummaryItem> */}
 
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{cart.total} RON</SummaryItemPrice>
             </SummaryItem>
+
+
+
             <StripeCheckout
               name="IVA"
               image="https://avatars.githubusercontent.com/u/1486366?v=4"
               billingAddress
               shippingAddress
-              description={`Aveți de plătit  ${cart.total + 5.9} RON`}
+              description={`Aveți de plătit  ${cart.total} RON`}
               currency="RON"
               amount={cart.total * 100}
 
               token={onToken}
               stripeKey={KEY}
-
             >
+
               <Button>CHECKOUT NOW</Button>
             </StripeCheckout>
           </Summary>

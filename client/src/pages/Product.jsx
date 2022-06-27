@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { Alert } from "@mui/material";
 
 const Container = styled.div``;
 
@@ -74,14 +75,28 @@ const FilterColor = styled.div`
   background-color: ${(props) => props.color};
   margin: 0px 5px;
   cursor: pointer;
+  border:3px solid black;
+  &:active{
+    outline: 0;
+    border-color: green;
+  }
 `;
 
 const FilterSize = styled.select`
   margin-left: 10px;
   padding: 5px;
+  &:active{
+    outline: 0;
+    border-color: green;
+  }
 `;
 
-const FilterSizeOption = styled.option``;
+const FilterSizeOption = styled.option`
+border:3px solid black;
+&:active{
+  outline: 0;
+  border-color: green;
+}`;
 
 const AddContainer = styled.div`
   width: 50%;
@@ -120,6 +135,7 @@ const Button = styled.button`
   }
 `;
 
+
 const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -128,6 +144,20 @@ const Product = () => {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
+
+  // const [colorError, setColorError] = useState('');
+  // const [sizeError, setSizeError] = useState('');
+
+  // const validateAddingToCart=async()=>{
+  //   let check = true;
+  //   if(product.size ===''){
+  //     setSizeError("Trebuie sa alegi o marime")
+  //     check=false;
+  //   }
+  //   else{
+  //     setSizeError("")
+  //   }
+  // }
 
   useEffect(() => {
     const getProduct = async () => {
@@ -166,17 +196,27 @@ const Product = () => {
           <Price>$ {product.price}</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Color</FilterTitle>
+              <FilterTitle>Culoare</FilterTitle>
               {product.color?.map((c) => (
-                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+                <FilterColor color={c} key={c} onClick={() => setColor(c)
+                }  />
               ))}
+             
             </Filter>
             <Filter>
-              <FilterTitle>Size</FilterTitle>
+              <FilterTitle>Marime</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
+                  
                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
                 ))}
+                 {/* {
+              sizeError ? (
+                <Alert sx={{color:"red"}} variant={'danger'}>
+                  {sizeError}
+                </Alert>
+              ) : null
+            } */}
               </FilterSize>
             </Filter>
           </FilterContainer>

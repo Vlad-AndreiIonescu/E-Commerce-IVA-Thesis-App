@@ -10,18 +10,7 @@ export default function Topbar() {
           <span className="logo">Admin IVA</span>
         </div>
         <div className="topRight">
-          {/* <div className="topbarIconContainer">
-            <NotificationsNone />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Language />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Settings />
-          </div> */}
-          <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
+          <img src="https://thumbs.dreamstime.com/z/creative-element-design-stock-market-icons-collection-pixel-perfect-avatar-fashion-boss-men-clothing-icon-commercial-168197015.jpg" alt="" className="topAvatar" />
         </div>
       </div>
     </div>

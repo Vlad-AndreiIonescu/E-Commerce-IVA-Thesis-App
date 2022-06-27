@@ -17,6 +17,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   padding: 10px 20px;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,7 +56,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-  color: black;
+  color: white;
 `;
 
 const Right = styled.div`
@@ -70,7 +71,7 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  color: black;
+  color: white;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
@@ -80,15 +81,16 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
 
+ 
   const handleLogout = useCallback(() => dispatch(logout()), [dispatch]);
   return (
     <Container>
       <Wrapper>
         <Left>
-          <SearchContainer>
+          {/* <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
+          </SearchContainer> */}
         </Left>
         <Center>
           <Link to ="/" style={{ textDecoration: 'none' }}><Logo>IVA</Logo></Link>
@@ -111,7 +113,7 @@ const Navbar = () => {
             
             <MenuItem>
            
-              <Button onClick={handleLogout} style={{ display: "flex", flexDirection:"column" }}>{user.username} Logout </Button>
+              <Button onClick={handleLogout} style={{ display: "flex", flexDirection:"column",color:"white" }}>{user.username} Logout </Button>
             </MenuItem>
             
           

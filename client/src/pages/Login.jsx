@@ -4,6 +4,7 @@ import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import{useRouteMatch} from 'react-router-dom'
+import { Alert } from "@mui/material";
 
 const Container = styled.div`
   width: 100vw;
@@ -77,6 +78,9 @@ const Login = () => {
   const { isFetching, error, currentUser } = useSelector((state) => state.user);
   const router = useRouteMatch();
 
+  const [usernameError, setUsernameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   // const handleClick = (e) => {
   //   e.preventDefault();
   //   login(dispatch, { username, password });
@@ -88,6 +92,18 @@ const Login = () => {
     },
     [username, password]
   );
+
+  const validateUser=async(user)=>{
+    let check=true;
+    console.log("password: ", password)
+    if(password===user.password){
+      setPasswordError("")
+    }else{
+      setPasswordError("Username gresit")
+    }
+    return check;
+  }
+
 
   if (currentUser) {
     router.replace('/home');
@@ -103,11 +119,18 @@ const Login = () => {
             placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
           />
+          
           <Input
             placeholder="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-          />
+          />  {
+            passwordError ? (
+              <Alert sx={{color:"red"}} variant={'danger'}>
+                {passwordError}
+              </Alert>
+            ) : null
+          }
         <Link to="/">  <Button onClick={handleLogin} disabled={isFetching}>
             LOGIN
           </Button></Link>
