@@ -101,7 +101,7 @@ const Navbar = () => {
           </Link>
           )}
           
-          {!user && (<Link to="/login" style={{ textDecoration: 'none' }}>
+          {!user && (<Link to="/" style={{ textDecoration: 'none' }}>
           <MenuItem>SIGN IN</MenuItem>
           </Link>
            )}
