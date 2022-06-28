@@ -50,12 +50,12 @@ const Slide = styled.div`
 `;
 
 const ImgContainer = styled.div`
-  height: 100%;
+  height: 103%;
   flex: 1;
 `;
 
 const Image = styled.img`
-  height: 88%;
+  height: 100%;
   margin-left:100px;
 `;
 

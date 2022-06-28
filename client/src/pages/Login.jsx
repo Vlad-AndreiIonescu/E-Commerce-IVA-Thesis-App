@@ -13,7 +13,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://content.fortune.com/wp-content/uploads/2014/09/170887350.jpg?resize=1200,600")
   
     center;
   background-size: cover;
@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
+  margin-left:115px;
 `;
 
 const Form = styled.form`
@@ -50,14 +51,16 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
+  background-color: #ED555A;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  margin-left:115px;
   &:disabled {
     color: green;
     cursor: not-allowed;
   }
+
 `;
 
 const Link = styled.a`
@@ -65,10 +68,12 @@ const Link = styled.a`
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+  
 `;
 
 const Error = styled.span`
   color: red;
+  margin-left:115px;
 `;
 
 const Login = () => {
@@ -87,8 +92,11 @@ const Login = () => {
   // };
   const handleLogin = useCallback(
     (e) => {
-      e.preventDefault();
-      login(dispatch, { username, password });
+      if(validateUser()){
+        e.preventDefault();
+        login(dispatch, { username, password });
+      }
+      
     },
     [username, password]
   );
@@ -96,10 +104,16 @@ const Login = () => {
   const validateUser=async(user)=>{
     let check=true;
     console.log("password: ", password)
-    if(password===user.password){
+    if(password.length>=5){
       setPasswordError("")
     }else{
-      setPasswordError("Username gresit")
+      setPasswordError("Parola gresita")
+    }
+    if(username.length>=5){
+      setUsernameError("")
+    }
+    else{
+      setUsernameError("Username gresit")
     }
     return check;
   }
@@ -113,30 +127,31 @@ const Login = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>Autentificare</Title>
         <Form>
           <Input
             placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
           />
+          {
+            usernameError ? <Alert sx={{color:"red"}} variant={'danger'}>{usernameError} </Alert> : null
+          }
           
           <Input
-            placeholder="password"
+            placeholder="parola"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-          />  {
-            passwordError ? (
-              <Alert sx={{color:"red"}} variant={'danger'}>
-                {passwordError}
-              </Alert>
-            ) : null
+          />{
+            passwordError ? <Alert sx={{color:"red"}} variant={'danger'}>{passwordError} </Alert> : null
           }
-        <Link to="/">  <Button onClick={handleLogin} disabled={isFetching}>
-            LOGIN
-          </Button></Link>
-          {error && <Error>Something went wrong...</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <a href="/register">CREATE A NEW ACCOUNT</a> 
+        <Link to="/home">
+       <Button onClick={handleLogin} disabled={isFetching}  >
+            Autentificare
+          </Button></Link> 
+
+          {/* {error && <Error>Credentiale invalide</Error>} */}
+      
+          <a href="/register" style={{ textDecoration: 'none', color:'black', marginLeft:'128px'}}>Creeaza un cont</a> 
         </Form>
       </Wrapper>
     </Container>

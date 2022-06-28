@@ -93,27 +93,28 @@ const Navbar = () => {
           </SearchContainer> */}
         </Left>
         <Center>
-          <Link to ="/" style={{ textDecoration: 'none' }}><Logo>IVA</Logo></Link>
+          <Link to ="/home" style={{ textDecoration: 'none' }}><Logo>IVA</Logo></Link>
           
         </Center>
         <Right>
         {!user && (
         <Link to="/register" style={{ textDecoration: 'none' }}>
-          <MenuItem>REGISTER</MenuItem>
+          <MenuItem>INREGISTRARE</MenuItem>
           </Link>
           )}
           
           {!user && (<Link to="/" style={{ textDecoration: 'none' }}>
-          <MenuItem>SIGN IN</MenuItem>
+          <MenuItem>AUTENTIFICARE</MenuItem>
           </Link>
            )}
             
         
             {user && (
             
+            
             <MenuItem>
-           
-              <Button onClick={handleLogout} style={{ display: "flex", flexDirection:"column",color:"white" }}>{user.username} Logout </Button>
+           <Link to="/" style={{ textDecoration: 'none' }} > 
+              <Button onClick={handleLogout} style={{ display: "flex", flexDirection:"column",color:"white" }}>{user.username} Logout </Button></Link>
             </MenuItem>
             
           

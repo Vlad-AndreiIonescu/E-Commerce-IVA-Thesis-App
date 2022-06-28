@@ -29,6 +29,7 @@ const Image = styled.img`
   height: 90vh;
   object-fit: cover;
   ${mobile({ height: "40vh" })}
+  
 `;
 
 const InfoContainer = styled.div`
@@ -116,7 +117,7 @@ const Amount = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  border: 1px solid teal;
+  border: 2px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,13 +126,13 @@ const Amount = styled.span`
 
 const Button = styled.button`
   padding: 15px;
-  border: 2px solid teal;
+  border: 3px solid black;
   background-color: white;
   cursor: pointer;
   font-weight: 500;
 
   &:hover {
-    background-color: #f8f4f4;
+    background-color: #ED555A;
   }
 `;
 
@@ -191,12 +192,12 @@ const Product = () => {
           <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>{product.title}</Title>
-          <Desc>{product.desc}</Desc>
-          <Price>$ {product.price}</Price>
+          <Title><b>{product.title}</b></Title>
+          <Desc><b>{product.desc}</b></Desc>
+          <Price><b>{product.price} RON</b></Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Culoare</FilterTitle>
+              <FilterTitle><b>Culoare</b></FilterTitle>
               {product.color?.map((c) => (
                 <FilterColor color={c} key={c} onClick={() => setColor(c)
                 }  />
@@ -204,7 +205,7 @@ const Product = () => {
              
             </Filter>
             <Filter>
-              <FilterTitle>Marime</FilterTitle>
+              <FilterTitle><b>Marime</b></FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size?.map((s) => (
                   
@@ -226,7 +227,7 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button onClick={handleClick}><b>Adauga in cos</b></Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

@@ -60,7 +60,7 @@ router.post("/login", async (req, res) => {
 
     res.send({...others, accessToken});
   } catch (err) {
-    console.log(error.messsage)
+    console.log(err.messsage)
   }
 
  

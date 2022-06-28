@@ -1,4 +1,4 @@
-import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useRouteMatch, useHistory, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useCallback, useState } from 'react';
@@ -25,16 +25,17 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
 
-  // // width: 27%;
-  // display:contents ;
-  // padding: 20px;
-  // background-color: white;
-  // ${mobile({ width: "75%" })}
+  width: 27%;
+  display:contents ;
+  padding: 10px;
+  background-color: white;
+  ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
+  margin-top:7px;
 `;
 
 const Form = styled.form`
@@ -55,13 +56,13 @@ const Agreement = styled.span`
 `;
 
 const Button = styled.button`
-  width: 100%;
+  width: 98%;
   border: none;
-  padding: 15px 20px;
-  background-color: teal;
+  padding: 10px 10px;
+  background-color: #ED555A;
   color: white;
   cursor: pointer;
-  margin-top: 25px;
+  margin-top: 10px;
 `;
 
 const Register = () => {
@@ -96,11 +97,13 @@ const Register = () => {
 
     if (validateUser()) {
       register(dispatch, { username, email, password });
-      // history.push('/');
+
+
       console.log("yay")
 
     }
     else {
+
       console.log("nope")
     }
   };
@@ -133,7 +136,7 @@ const Register = () => {
     console.log("name: ", name)
 
     if (name.length <= 3 || name.trim() === "") {
-      setNameError("Prenume invalid! Trebuie sa contina cel puutin 3 litere");
+      setNameError("Prenume invalid! Trebuie sa contina cel putin 3 litere");
       check = false;
     }
     else {
@@ -142,7 +145,7 @@ const Register = () => {
     console.log("lastname: ", lastname)
 
     if (lastname.length <= 3 || lastname.trim() === "") {
-      setLastnameError("Nume invalid! Trebuie sa contina cel puutin 3 litere");
+      setLastnameError("Nume invalid! Trebuie sa contina cel putin 3 litere");
       check = false;
     }
     else {
@@ -151,7 +154,7 @@ const Register = () => {
     console.log("username: ", username)
 
     if (username.length <= 3 || username.trim() === "") {
-      setUsernameError("Username invalid! Trebuie sa contina cel puutin 3 litere");
+      setUsernameError("Username invalid! Trebuie sa contina cel putin 3 caractere");
       check = false;
     }
     else {
@@ -175,70 +178,71 @@ const Register = () => {
   return (
     <Container>
       <Wrapper>
-      <Stack
-  alignItems="center"
-  spacing={0.01}
->
-        <Title>CREATE AN ACCOUNT</Title >
-        <Form onSubmit={handleRegister}>
+        <Stack
+          alignItems="center"
+          spacing={0.1}
+        >
+          <Title>Creeaza cont</Title >
+          <Form onSubmit={handleRegister}>
 
-        <FormControl>
+            <FormControl>
 
-             <Input placeholder="name" value={name} onChange={(e) => setName(e.target.value)} />
-            {
-              nameError ? (
-                <Alert sx={{color:"red"}} variant={'danger'}>
-                  {nameError}
-                </Alert>
-              ) : null
-            }
-            <Input placeholder="last name" value={lastname} onChange={(e) => setLastname(e.target.value)} />
-            {
-              lastnameError ? (
-                <Alert sx={{color:"red"}} variant={'danger'}>
-                  {lastnameError}
-                </Alert>
-              ) : null
-            }
-            <Input placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            {
-              usernameError ? (
-                <Alert variant={'danger'}>
-                  {usernameError}
-                </Alert>
-              ) : null
-            }
-            <Input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            {
-              emailError ? (
-                <Alert variant={'danger'}>
-                  {emailError}
-                </Alert>
-              ) : null
-            }
-            <Input placeholder="password" type="password" value={password}
-              onChange={(e) => setPassword(e.target.value)} />
-            {
-              passwordError ? (
-                <Alert variant={'danger'}>
-                  {passwordError}
-                </Alert>
-              ) : null
-            }
-            <Input placeholder="confirm password" type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} />
-            {
-              confirmPassError ? (
-                <Alert variant={'danger'}>
-                  {confirmPassError}
-                </Alert>
-              ) : null
-            }
+              <Input placeholder="prenume" value={name} onChange={(e) => setName(e.target.value)} />
+              {
+                nameError ? (
+                  <Alert sx={{ color: "red", marginBottom:"-10px" }} variant={'danger'}>
+                    {nameError}
+                  </Alert>
+                ) : null
+              }
+              <Input placeholder="nume" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+              {
+                lastnameError ? (
+                  <Alert sx={{ color: "red" ,marginBottom:"-10px"}} variant={'danger'}>
+                    {lastnameError}
+                  </Alert>
+                ) : null
+              }
+              <Input placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+              {
+                usernameError ? (
+                  <Alert sx={{ color: "red" ,marginBottom:"-10px"}} variant={'danger'}>
+                    {usernameError}
+                  </Alert>
+                ) : null
+              }
+              <Input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              {
+                emailError ? (
+                  <Alert sx={{ color: "red", marginBottom:"-10px" }} variant={'danger'}>
+                    {emailError}
+                  </Alert>
+                ) : null
+              }
+              <Input placeholder="parola" type="password" value={password}
+                onChange={(e) => setPassword(e.target.value)} />
+              {
+                passwordError ? (
+                  <Alert sx={{ color: "red" , marginBottom:"-10px"}} variant={'danger'}>
+                    {passwordError}
+                  </Alert>
+                ) : null
+              }
+              <Input placeholder="confirmare parola" type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} />
+              {
+                confirmPassError ? (
+                  <Alert sx={{ color: "red" }} variant={'danger'}>
+                    {confirmPassError}
+                  </Alert>
+                ) : null
+              }
 
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <Button type="submit" onClick={handleRegister}>CREATE</Button>
-            </Link>
+              <Link to="/" >
+                <Button type="submit" onClick={handleRegister}>
+                  Inregistare
+                </Button></Link>
             </FormControl>
-        </Form>
+          </Form>
         </Stack>
       </Wrapper>
     </Container>

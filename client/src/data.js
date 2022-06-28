@@ -1,7 +1,7 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "pozav-removebg-preview.png",
+      img: "f886f3878d095b6bacb52246ce826d46-removebg-preview.png",
       title: "BARBATI",
       desc: "NU RATA CEA MAI NOUA COLECTIE PENTRU BARBATI!!!",
       bg: "F3EEED",

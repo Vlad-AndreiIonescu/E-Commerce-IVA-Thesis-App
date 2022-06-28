@@ -59,7 +59,7 @@ const ProductList = () => {
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
-          <FilterText>Filter Products:</FilterText>
+          <FilterText>Filtrare produse:</FilterText>
           <Select name="color" onChange={handleFilters}>
             <Option>Culoare</Option>
             <Option>White</Option>
@@ -76,10 +76,14 @@ const ProductList = () => {
             <Option>M</Option>
             <Option>L</Option>
             <Option>XL</Option>
+            <Option>2XL</Option>
+            <Option>3XL</Option>
+            <Option>4XL</Option>
+            <Option>5XL</Option>
           </Select>
         </Filter>
         <Filter>
-          <FilterText>Sort Products:</FilterText>
+          <FilterText>Sortare produse:</FilterText>
           <Select onChange={(e) => setSort(e.target.value)}>
             <Option value="newest">Cele mai noi</Option>
             <Option value="asc">Pret ascendent</Option>
