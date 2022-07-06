@@ -1,10 +1,14 @@
 import React from 'react';
-import { Add, Remove, DeleteOutline, Visibility } from "@material-ui/icons";
+import { Add, Remove, DeleteOutline, Visibility, SpaceBar } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import DateTimePicker from "../components/DateTimePicker"
+import LocalizationProvider from '@mui/lab/DatePicker';
+import DateFnsUtils from '@date-io/date-fns';
+
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useCallback, useState } from "react";
@@ -233,12 +237,12 @@ const Cart = () => {
       <Navbar />
       <Announcement />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>Cosul tau</Title>
         <Top>
           <Link to="/">
-            <TopButton>CONTINUE SHOPPING</TopButton>
+            <TopButton>Continua cumparaturile</TopButton>
           </Link>
-          <TopButton type="filled" onClick={() => dispatch(emptyCart())} >Empty Cart</TopButton>
+          <TopButton type="filled" onClick={() => dispatch(emptyCart())} >Goleste cosul</TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -272,7 +276,7 @@ const Cart = () => {
             <Hr />
           </Info>
           <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryTitle>Detalii comanda</SummaryTitle>
 
 
             <FormControl fullWidth>
@@ -290,8 +294,10 @@ const Cart = () => {
                 <MenuItem value='indragostitilor'>Ziua Indragostitilor</MenuItem>
               </Select>
             </FormControl>
+            <br></br>
+            <br></br>
 
-
+            <DateTimePicker />
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{cart.total} RON</SummaryItemPrice>
@@ -301,7 +307,7 @@ const Cart = () => {
 
             <StripeCheckout
               name="IVA"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              image="AvatarStripe.jpeg"
               billingAddress
               shippingAddress
               description={`Aveți de plătit  ${cart.total} RON`}
@@ -311,8 +317,7 @@ const Cart = () => {
               token={onToken}
               stripeKey={KEY}
             >
-
-              <Button>CHECKOUT NOW</Button>
+              <Button>Plateste</Button>
             </StripeCheckout>
           </Summary>
         </Bottom>

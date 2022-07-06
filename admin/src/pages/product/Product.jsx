@@ -6,15 +6,28 @@ import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethods";
+import { updateProduct } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 export default function Product() {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const [pStats, setPStats] = useState([]);
 
+  // const [inputs, setInputs] = useState({});
+  // const [file, setFile] = useState(null);
+  // const [cat, setCat] = useState([]);
+  // const dispatch = useDispatch();
+
   const product = useSelector((state) =>
     state.product.products.find((product) => product._id === productId)
   );
+
+  // const handleChange = (e) => {
+  //   setInputs((prev) => {
+  //     return { ...prev, [e.target.name]: e.target.value };
+  //   });
+  // };
 
   const MONTHS = useMemo(
     () => [
@@ -54,18 +67,21 @@ export default function Product() {
     getStats();
   }, [productId, MONTHS]);
 
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+   
+  //   const product = { ...inputs, };
+  //   updateProduct(dispatch, "62c31ddc35770ea6366f4474", product);
+
+  // };
   return (
     <div className="product">
       <div className="productTitleContainer">
-        <h1 className="productTitle">Product</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
+        <h1 className="productTitle">Produs</h1>
+        
       </div>
       <div className="productTop">
-        <div className="productTopLeft">
-          <Chart data={pStats} dataKey="Sales" title="Sales Performance" />
-        </div>
+      
         <div className="productTopRight">
           <div className="productInfoTop">
             <img src={product.img} alt="" className="productInfoImg" />
@@ -76,31 +92,24 @@ export default function Product() {
               <span className="productInfoKey">id:</span>
               <span className="productInfoValue">{product._id}</span>
             </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">sales:</span>
-              <span className="productInfoValue">5123</span>
-            </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">in stock:</span>
-              <span className="productInfoValue">{product.inStock}</span>
-            </div>
+       
           </div>
         </div>
       </div>
       <div className="productBottom">
         <form className="productForm">
           <div className="productFormLeft">
-            <label>Product Name</label>
+            <label>Titlu</label>
             <input type="text" placeholder={product.title} />
-            <label>Product Description</label>
-            <input type="text" placeholder={product.desc} />
-            <label>Price</label>
+            <label>Descriere</label>
+            <input type="text" placeholder={product.desc}  />
+            <label>Pret</label>
             <input type="text" placeholder={product.price} />
-            <label>In Stock</label>
-            <select name="inStock" id="idStock">
+            {/* <label>In Stock</label> */}
+            {/* <select name="inStock" id="idStock">
               <option value="true">Yes</option>
               <option value="false">No</option>
-            </select>
+            </select> */}
           </div>
           <div className="productFormRight">
             <div className="productUpload">
@@ -110,7 +119,7 @@ export default function Product() {
               </label>
               <input type="file" id="file" style={{ display: "none" }} />
             </div>
-            <button className="productButton">Update</button>
+            <button  className="productButton">Editare</button>
           </div>
         </form>
       </div>

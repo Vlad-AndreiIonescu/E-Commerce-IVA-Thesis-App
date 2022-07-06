@@ -7,6 +7,7 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
+
 `;
 
 const Image = styled.img`
@@ -38,9 +39,12 @@ const Button = styled.button`
     border:none;
     padding: 10px;
     background-color: white;
-    color:gray;
+    color:black;
     cursor: pointer;
     font-weight: 600;
+    &:hover {
+      background-color: #ED555A;
+    }
 `;
 
 const CategoryItem = ({ item }) => {
@@ -50,7 +54,7 @@ const CategoryItem = ({ item }) => {
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        <Button>CUMPARA ACUM</Button>
       </Info>
       </Link>
     </Container>

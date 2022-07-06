@@ -45,7 +45,7 @@ const Products = ({ cat, filters, sort }) => {
     if (sort === "newest") {
       setFilteredProducts((prev) =>
         // [...prev].sort((a, b) => a.createdAt - b.createdAt)
-        [...prev].sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt))
+        [...prev].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
       );
     } else if (sort === "asc") {
       setFilteredProducts((prev) =>

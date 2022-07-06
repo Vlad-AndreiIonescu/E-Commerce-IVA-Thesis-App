@@ -85,14 +85,14 @@ const ProductList = () => {
         <Filter>
           <FilterText>Sortare produse:</FilterText>
           <Select onChange={(e) => setSort(e.target.value)}>
-            <Option value="newest">Cele mai noi</Option>
-            <Option value="asc">Pret ascendent</Option>
+          <Option value="asc">Pret ascendent</Option>
             <Option value="desc">Pret descentent</Option>
+            <Option value="newest">Cele mai noi</Option>
+            
           </Select>
         </Filter>
       </FilterContainer>
       <Products cat={cat} filters={filters} sort={sort} />
-      <Newsletter />
       <Footer />
     </Container>
   );

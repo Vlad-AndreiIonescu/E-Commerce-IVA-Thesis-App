@@ -9,12 +9,15 @@ import {
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
+// import {Alert} from '@mui/material'
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
   const dispatch = useDispatch();
+  const [validate, setValidate]=useState("");
+
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -31,6 +34,7 @@ export default function NewProduct() {
     const storage = getStorage(app);
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
+    
 
     // Register three observers:
     // 1. 'state_changed' observer, called any time the state changes
@@ -53,6 +57,10 @@ export default function NewProduct() {
             break;
           default:
         }
+        if(progress===100){console.log("rosca")
+          setValidate("Produsul a fost adaugat")
+        }
+        return progress;
       },
       (error) => {
         // Handle unsuccessful uploads
@@ -70,10 +78,10 @@ export default function NewProduct() {
 
   return (
     <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
+      <h1 className="addProductTitle">Adaugare produs</h1>
       <form className="addProductForm">
         <div className="addProductItem">
-          <label>Image</label>
+          <label>Imagine</label>
           <input
             type="file"
             id="file"
@@ -81,25 +89,25 @@ export default function NewProduct() {
           />
         </div>
         <div className="addProductItem">
-          <label>Title</label>
+          <label>Titlu</label>
           <input
             name="title"
             type="text"
-            placeholder="Apple Airpods"
+            placeholder="Titlu"
             onChange={handleChange}
           />
         </div>
         <div className="addProductItem">
-          <label>Description</label>
+          <label>Descriere</label>
           <input
             name="desc"
             type="text"
-            placeholder="description..."
+            placeholder="Descriere"
             onChange={handleChange}
           />
         </div>
         <div className="addProductItem">
-          <label>Price</label>
+          <label>Pret</label>
           <input
             name="price"
             type="number"
@@ -108,20 +116,22 @@ export default function NewProduct() {
           />
         </div>
         <div className="addProductItem">
-          <label>Categories</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleCat} />
+          <label>Categorie</label>
+          <input type="text" placeholder="Barbati, Femei" onChange={handleCat} />
         </div>
         <div className="addProductItem">
-          <label>Stock</label>
+          {/* <label>Stock</label>
           <select name="inStock" onChange={handleChange}>
             <option value="true">Yes</option>
             <option value="false">No</option>
-          </select>
+          </select> */}
         </div>
         <button onClick={handleClick} className="addProductButton">
-          Create
+          Adaugare
         </button>
-      </form>
+     
+
+</form>
     </div>
   );
 }

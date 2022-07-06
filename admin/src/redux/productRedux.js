@@ -43,6 +43,7 @@ export const productSlice = createSlice({
       state.error = false;
     },
     updateProductSuccess: (state, action) => {
+      console.log("updateSuccess din productRedux")
       state.isFetching = false;
       state.products[
         state.products.findIndex((item) => item._id === action.payload.id)

@@ -18,8 +18,9 @@
 .logo {
   font-weight: bold;
   font-size: 30px;
-  color: darkblue;
   cursor: pointer;
+  align-items: center;
+  margin-left: 700px;
 }
 
 .topRight{

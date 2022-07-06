@@ -22,8 +22,8 @@ export default function ProductList() {
     { field: "_id", headerName: "ID", width: 220 },
     {
       field: "product",
-      headerName: "Product",
-      width: 200,
+      headerName: "Denumire Produs",
+      width: 300,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -33,26 +33,29 @@ export default function ProductList() {
         );
       },
     },
-    { field: "inStock", headerName: "Stock", width: 200 },
+    // { field: "inStock", headerName: "Stock", width: 200 },
     {
       field: "price",
-      headerName: "Price",
+      headerName: "Pret",
       width: 160,
     },
     {
       field: "action",
-      headerName: "Action",
-      width: 150,
+      headerName: "Actiuni",
+      width: 310,
       renderCell: (params) => {
         return (
           <>
             <Link to={"/product/" + params.row._id}>
-              <button className="productListEdit">Edit</button>
+              <button className="productListEdit">Editare</button>
             </Link>
             <DeleteOutline
               className="productListDelete"
               onClick={() => handleDelete(params.row._id)}
             />
+            <Link to="/newproduct">
+          <button className="productAddButton">Adaugă produs</button>
+        </Link>
           </>
         );
       },
@@ -66,7 +69,7 @@ export default function ProductList() {
         disableSelectionOnClick
         columns={columns}
         getRowId={(row) => row._id}
-        pageSize={8}
+        pageSize={10}
         checkboxSelection
       />
     </div>

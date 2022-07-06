@@ -10,6 +10,8 @@ import { UserGroupIcon } from '@heroicons/react/solid';
 import { LogoutIcon } from '@heroicons/react/outline';
 import { logout } from '../redux/userRedux';
 import{Button} from "@material-ui/core"
+
+
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -81,16 +83,12 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
 
- 
   const handleLogout = useCallback(() => dispatch(logout()), [dispatch]);
   return (
     <Container>
       <Wrapper>
         <Left>
-          {/* <SearchContainer>
-            <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer> */}
+         
         </Left>
         <Center>
           <Link to ="/home" style={{ textDecoration: 'none' }}><Logo>IVA</Logo></Link>

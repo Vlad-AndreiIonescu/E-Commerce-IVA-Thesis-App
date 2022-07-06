@@ -35,7 +35,7 @@ export default function Home() {
         res.data.map((item) =>
           setUserStats((prev) => [
             ...prev,
-            { name: MONTHS[item._id - 1], "Active User": item.total },
+            { name: MONTHS[item._id - 1], "Utilizatori noi": item.total },
           ])
         );
       } catch {}
@@ -45,16 +45,16 @@ export default function Home() {
 
   return (
     <div className="home">
-      <FeaturedInfo />
+      {/* <FeaturedInfo /> */}
       <Chart
         data={userStats}
-        title="User Analytics"
+        title="Graficul noilor utilizatori"
         grid
-        dataKey="Active User"
+        dataKey="Utilizatori noi"
       />
       <div className="homeWidgets">
         <WidgetSm />
-        <WidgetLg />
+        {/* <WidgetLg /> */}
       </div>
     </div>
   );

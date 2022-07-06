@@ -15,13 +15,6 @@ export const sliderItems = [
       bg: "F3EEED",
       cat:"Femei"
     },
-    {
-      id: 3,
-      img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "LOUNGEWEAR LOVE",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "F3EEED",
-    },
   ];
 
   export const categories = [
@@ -39,15 +32,15 @@ export const sliderItems = [
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
-      cat:"jeans"
+      img: "pozacategCamasiF.jpg",
+      title: "Camasi!",
+      cat:"CamasiF"
     },
     {
       id: 4,
-      img: "https://i.pinimg.com/originals/b6/54/19/b654193cd24b7e73782997c28a071e88.jpg",
-      title: "Coat",
-      cat:"coat"
+      img: "pozacategPantF.jpg",
+      title: "Pantaloni!",
+      cat:"PantaloniF"
     },
   ];
 

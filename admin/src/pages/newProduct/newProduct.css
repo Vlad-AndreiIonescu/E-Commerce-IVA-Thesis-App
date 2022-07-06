@@ -1,6 +1,7 @@
 .newProduct {
   flex: 4;
   margin-left: 100px;
+  
 }
 
 .addProductForm {
@@ -12,12 +13,15 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  width: 400px;
+  
 }
 
 .addProductItem > label {
   color: gray;
   font-weight: 600;
   margin-bottom: 10px;
+  
 }
 
 .addProductItem > input {
@@ -33,7 +37,7 @@
   padding: 7px 10px;
   border: none;
   border-radius: 10px;
-  background-color: darkblue;
+  background-color: #ED555A;
   color: white;
   font-weight: 600;
   cursor: pointer;

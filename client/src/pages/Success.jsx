@@ -43,8 +43,8 @@ const Success = () => {
     >
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Successfull. Your order is being prepared...`}
-     <Link to="/"><button style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(emptyCart())}>Go to Homepage</button></Link> 
+        : `Plata fost realizata cu succes.`}
+     <Link to="/"><button style={{ padding: 10, marginTop: 20 }} onClick={() => dispatch(emptyCart())}>Home</button></Link> 
     </div>
   );
 };
