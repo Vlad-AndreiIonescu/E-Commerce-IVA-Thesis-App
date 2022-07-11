@@ -49,16 +49,16 @@ export const deleteProduct = async (id, dispatch) => {
 };
 
 
-export const updateProduct = async (id, product, dispatch) => {
+export const updateProduct = async (dispatch, id, data) => {
   dispatch(updateProductStart());
   try {
-    // update.. asici trb ala cu await.
-    dispatch(updateProductSuccess({ id, product }));
-  } catch (err) {
+    console.log("aici")
+    await userRequest.put(`/products/${id, data}`);
+    dispatch(updateProductSuccess( id, data ));
+  } catch (error) {
     dispatch(updateProductFailure());
   }
 };
-
 
 export const addProduct = async (product, dispatch) => {
   dispatch(addProductStart());
