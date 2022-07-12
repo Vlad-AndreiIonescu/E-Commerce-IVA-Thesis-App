@@ -1,4 +1,4 @@
-import { Link, useRouteMatch, useHistory, useNavigate } from "react-router-dom";
+import { Link, useRouteMatch, useHistory,Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useCallback, useState } from 'react';
@@ -91,8 +91,10 @@ const Register = () => {
   //   const { name, value } = e.target;
   //   setFormValues({ ...formValues, [name]: value });
   // };
-
+  //  const navigate = Navigate();
+  
   const handleRegister = (e) => {
+    
     e.preventDefault();
 
     if (validateUser()) {
@@ -100,7 +102,9 @@ const Register = () => {
 
 
       console.log("yay")
-
+      //  navigate('/');
+      
+     
     }
     else {
 
@@ -183,7 +187,7 @@ const Register = () => {
           spacing={0.1}
         >
           <Title>Creeaza cont</Title >
-          <Form onSubmit={handleRegister}>
+          <Form >
 
             <FormControl>
 
@@ -238,11 +242,12 @@ const Register = () => {
               }
 
               <Link to="/" >
-                <Button type="submit" onClick={handleRegister}>
+                <Button type="submit" onClick={handleRegister}  >
                   Inregistare
                 </Button></Link>
             </FormControl>
           </Form>
+         
         </Stack>
       </Wrapper>
     </Container>

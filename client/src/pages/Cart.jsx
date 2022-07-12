@@ -5,9 +5,6 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import DateTimePicker from "../components/DateTimePicker"
-import LocalizationProvider from '@mui/lab/DatePicker';
-import DateFnsUtils from '@date-io/date-fns';
 
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
@@ -20,10 +17,12 @@ import {
   Link
 } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
-import { Alert } from '@mui/material';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
+} from "@material-ui/pickers";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -194,7 +193,26 @@ const Cart = () => {
   };
 
 
+  const onAddCommand = async () => {
+    console.log("s-a apasat")
+    console.log(cart);
+    try {
+      console.log("a mers");
+      const command = {
+        userId: "62ab3de4adfef06d316bcdd3",
+        products: cart.products,
+        amount: cart.total,
+        typePackaging: typePackaging,
+        shippingDate: selectedDate
+      }
+      console.log("command: ", command);
+      console.log("shippingDate: ", selectedDate)
+      const res = await userRequest.post("/orders", command);
 
+    } catch {
+      console.log("sorry boss");
+    }
+  }
 
   const handleDelete = useCallback((product) => {
     dispatch(
@@ -230,6 +248,7 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, history, typePackaging]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
 
   return (
@@ -297,7 +316,17 @@ const Cart = () => {
             <br></br>
             <br></br>
 
-            <DateTimePicker />
+            {/* <DateTimePicker /> */}
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                value={selectedDate}
+                format="MM/dd/yyyy"
+                label="Alege data livrarii!"
+                onChange={value => setSelectedDate(value)}
+                disablePast={true}
+
+              />
+            </MuiPickersUtilsProvider>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{cart.total} RON</SummaryItemPrice>
@@ -312,19 +341,19 @@ const Cart = () => {
               shippingAddress
               description={`Aveți de plătit  ${cart.total} RON`}
               currency="RON"
-              amount={cart.total * 100}
+              amount={cart.total *100}
 
               token={onToken}
               stripeKey={KEY}
             >
-              <Button>Plateste</Button>
-            </StripeCheckout>
+            <Button onClick={onAddCommand}>Plateste</Button>            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
       <Footer />
     </Container>
   );
+
 };
 
 export default Cart;
