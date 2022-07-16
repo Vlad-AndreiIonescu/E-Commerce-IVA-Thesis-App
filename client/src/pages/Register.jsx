@@ -81,7 +81,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
   // const { isFetching, error } = useSelector((state) => state.user);
-  const router = useRouteMatch();
+  // const router = useRouteMatch();
   const history = useHistory();
 
   // const intialValues={username: "", email: "", password: ""};
@@ -93,32 +93,12 @@ const Register = () => {
   // };
   //  const navigate = Navigate();
   
-  const handleRegister = (e) => {
-    
-    e.preventDefault();
-
-    if (validateUser()) {
-      register(dispatch, { username, email, password });
-
-
-      console.log("yay")
-      //  navigate('/');
-      
-     
-    }
-    else {
-
-      console.log("nope")
-    }
-  };
-
-
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 
-  const validateUser = async () => {
+  const validateUser =  () => {
     let check = true;
     console.log("email: ", email)
     if (!validateEmail(email)) {
@@ -139,7 +119,7 @@ const Register = () => {
     }
     console.log("name: ", name)
 
-    if (name.length <= 3 || name.trim() === "") {
+    if (name.length < 3 || name.trim() === "") {
       setNameError("Prenume invalid! Trebuie sa contina cel putin 3 litere");
       check = false;
     }
@@ -148,7 +128,7 @@ const Register = () => {
     }
     console.log("lastname: ", lastname)
 
-    if (lastname.length <= 3 || lastname.trim() === "") {
+    if (lastname.length < 3 || lastname.trim() === "") {
       setLastnameError("Nume invalid! Trebuie sa contina cel putin 3 litere");
       check = false;
     }
@@ -157,7 +137,7 @@ const Register = () => {
     }
     console.log("username: ", username)
 
-    if (username.length <= 3 || username.trim() === "") {
+    if (username.length <  3 || username.trim() === "") {
       setUsernameError("Username invalid! Trebuie sa contina cel putin 3 caractere");
       check = false;
     }
@@ -179,6 +159,31 @@ const Register = () => {
     return check;
   }
 
+
+  const handleRegister = async (e) => {
+    
+    e.preventDefault();
+
+    console.log("inainte de validateUser: "+validateUser())
+    if (validateUser()) {
+      console.log("inainte de register")
+      let result = await register(dispatch, { username, email, password });
+
+
+      console.log("yay")
+      console.log(result)
+      //  navigate('/');
+      if(result) history.push("/")
+     
+    }
+    else {
+
+      console.log("nope")
+    }
+  };
+
+
+  
   return (
     <Container>
       <Wrapper>

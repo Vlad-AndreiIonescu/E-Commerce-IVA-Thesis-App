@@ -8,6 +8,7 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useState } from "react";
 
+
 const Container = styled.div``;
 
 const Title = styled.h1`
@@ -61,16 +62,17 @@ const ProductList = () => {
         <Filter>
           <FilterText>Filtrare produse:</FilterText>
           <Select name="color" onChange={handleFilters}>
-            <Option>Culoare</Option>
+          <Option hidden>Culoare</Option>
             <Option>White</Option>
             <Option>Black</Option>
             <Option>Red</Option>
             <Option>Blue</Option>
             <Option>Yellow</Option>
             <Option>Green</Option>
+           
           </Select>
           <Select name="size" onChange={handleFilters}>
-            <Option>Marime</Option>
+            <Option hidden>Marime</Option>
             <Option>XS</Option>
             <Option>S</Option>
             <Option>M</Option>

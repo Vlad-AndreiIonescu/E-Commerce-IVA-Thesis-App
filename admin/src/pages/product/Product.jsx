@@ -109,13 +109,13 @@ export default function Product() {
             />
           </div>
           <div className="productFormRight">
-            <div className="productUpload">
+            {/* <div className="productUpload">
               <img src={product.img} alt="" className="productUploadImg"  />
               <label htmlFor="file">
                 <Publish />
               </label>
               <input type="file" id="file" style={{ display: "none" }} onChange={(e) => setFile(e.target.value)}/>
-            </div>
+            </div> */}
             <button className="productButton" onClick={updateProductt}>Editare</button>
           </div>
         </form>

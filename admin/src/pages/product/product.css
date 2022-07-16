@@ -122,10 +122,11 @@
 
 .productButton{
   border: none;
-  padding: 5px;
+  padding: 20px;
   border-radius: 5px;
   background-color: #ED555A;
   color:white;
   font-weight: 600;
   cursor: pointer;
+  
 }

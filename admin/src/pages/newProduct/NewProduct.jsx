@@ -9,7 +9,7 @@ import {
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
-// import {Alert} from '@mui/material'
+import {Alert} from '@mui/material'
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
@@ -17,7 +17,7 @@ export default function NewProduct() {
   const [cat, setCat] = useState([]);
   const dispatch = useDispatch();
   const [validate, setValidate]=useState("");
-
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -30,6 +30,7 @@ export default function NewProduct() {
 
   const handleClick = (e) => {
     e.preventDefault();
+    if(file) {
     const fileName = new Date().getTime() + file.name;
     const storage = getStorage(app);
     const storageRef = ref(storage, fileName);
@@ -71,9 +72,13 @@ export default function NewProduct() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, categories: cat };
           addProduct(product, dispatch);
+          setSuccess(true);
         });
       }
     );
+    } else {
+      alert('Incarca un fisier')
+    }
   };
 
   return (
@@ -84,10 +89,12 @@ export default function NewProduct() {
           <label>Imagine</label>
           <input
             type="file"
+            required
             id="file"
             onChange={(e) => setFile(e.target.files[0])}
           />
         </div>
+        
         <div className="addProductItem">
           <label>Titlu</label>
           <input
@@ -126,9 +133,12 @@ export default function NewProduct() {
             <option value="false">No</option>
           </select> */}
         </div>
-        <button onClick={handleClick} className="addProductButton">
+        <button type="submit" onClick={handleClick} className="addProductButton">
           Adaugare
         </button>
+        {success && (
+        <span   style={{ color: 'green', marginLeft: 20, fontWeight:"bold" }}>Adaugare Reusita</span>
+      )}
      
 
 </form>

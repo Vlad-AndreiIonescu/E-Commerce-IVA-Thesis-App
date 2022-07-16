@@ -1,5 +1,5 @@
 import React from 'react';
-import { Add, Remove, DeleteOutline, Visibility, SpaceBar } from "@material-ui/icons";
+import { Add, Remove, DeleteOutline, Visibility, SpaceBar, Today } from "@material-ui/icons";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -250,6 +250,19 @@ const Cart = () => {
   }, [stripeToken, cart.total, history, typePackaging]);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  function disableDays(date) {
+    var todayDate = new Date();
+    var today = todayDate.getUTCDate()
+    var day = date.getUTCDate()
+    console.log('day: ' + day)
+    console.log('today: ' + today)
+    // var tdate=todayDate.getDate();
+    // console.log(date)
+    return date.getDay() === 0 || date.getDay() === 6 || day === today - 1 || day === today || day === today + 1 
+    
+    
+  }
+ 
 
   return (
     <Container>
@@ -320,10 +333,17 @@ const Cart = () => {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 value={selectedDate}
+               // variant="inline"
+            inputVariant="outlined"
                 format="MM/dd/yyyy"
                 label="Alege data livrarii!"
                 onChange={value => setSelectedDate(value)}
+                
                 disablePast={true}
+                shouldDisableDate={disableDays}
+                
+                
+                
 
               />
             </MuiPickersUtilsProvider>
