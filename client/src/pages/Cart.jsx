@@ -12,9 +12,7 @@ import { useEffect, useCallback, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import { deleteProduct, emptyCart } from '../redux/cartRedux';
-import {
-
-  Link
+import { Link
 } from "react-router-dom";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 
@@ -341,7 +339,6 @@ const Cart = () => {
                 
                 disablePast={true}
                 shouldDisableDate={disableDays}
-                
                 
                 
 

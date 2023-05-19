@@ -63,12 +63,12 @@ const ProductList = () => {
           <FilterText>Filtrare produse:</FilterText>
           <Select name="color" onChange={handleFilters}>
           <Option hidden>Culoare</Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
+            <Option value={"White"}>Alb</Option>
+            <Option value={"Black"}>Negru</Option>
+            <Option value={"Red"}>Rosu</Option>
+            <Option value={"Blue"}>Albastru</Option>
+            <Option value={"Yellow"}>Galben</Option>
+            <Option value={"Green"}>Verde</Option>
            
           </Select>
           <Select name="size" onChange={handleFilters}>
